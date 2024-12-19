@@ -162,7 +162,6 @@ https://docs.aws.amazon.com/cli/latest/userguide/cli_acm_code_examples.html
 
 aws configure--accesskey,secreetaccesskey
 
-Thursday-explanation
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ebs--backup: snaphot(region)---> Copy can be done to other regions as well
 1. Snaphots are incremental: This means after the initial snapshot is done, subseqeunt snaphots only store the changes that have taken place since the previous snaphot
@@ -311,4 +310,12 @@ echo "<h1>Welcome to payments page</h1>" > /var/www/html/payments/index.html
 http://ip-adress  --> Server-2
 http://ip-adress/payments ---> welcome to payments page
 
-cross-zone LB
+------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+Day-6
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Route53 HandsOn, Test 
+
+https://forms.gle/yg1aJYVCmaez2dFE6
+
+-----------------------------------------------------------------------------------------------------------------------
