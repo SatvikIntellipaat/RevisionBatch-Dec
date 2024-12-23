@@ -319,3 +319,34 @@ Route53 HandsOn, Test
 https://forms.gle/yg1aJYVCmaez2dFE6
 
 -----------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+Day-7
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+VPC (Virtual private cloud)
+-- Private network from aws network
+
+Use-Case
+1. we can have isolated netoworks
+2. For security
+3. To Organize our network
+
+CIDR ---> Classless inter domain routing
+-> Concept of networking to divide the network
+Internet --> network
+
+Ip-a network address to machine to communicate in a network 
+-> ipv4 --> 4 octets (1octect --> 8 bits)
+-> ipv6
+
+10.0.0.1 ----> 00001010.00000000.00000000.00000001
+
+Binary -->  Decimal Converstion
+Decimal  --> Binary Coversion
+
+110001101  is quivalent to 00110001101
+
+ipv4 --> 32 bits
+
+12 -- > in binary is 1100
+Q. You have 4 binary bits (2 ->  1s and 2 -> 0s). How many combinations can you have with 2-0sand 2-1s 
