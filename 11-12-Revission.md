@@ -350,3 +350,32 @@ ipv4 --> 32 bits
 
 12 -- > in binary is 1100
 Q. You have 4 binary bits (2 ->  1s and 2 -> 0s). How many combinations can you have with 2-0sand 2-1s 
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+Day-8
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+VPC, Subnet, IGW,NAT,Security,Peering Connection, Transit-Gateway
+
+Ip --> 0.0.0.0 to 255.255.255.255 == 255*255*255*255 
+
+Classfull Routing
+-----------------
+Internet is divided into classes
+Class A --> 0.0.0.0 to 127.255.255.255 --> 255.0.0.0 --> 256*256*256 (1st octet 1bit is 0) /8
+CLass B --> 128.0.0.0 to 191.255.255.255 --> 255.255.0.0 --> (1st octet first 2bit is 10) /16
+Class C --> 192.0.0.0 to 223.255.255.255 --> 255.255.255.0 --> 256 ips (1st octet first 3bit is 110) /24
+Class D --> 224.0.0.0 to 239.255.255.255 (militray) --> (1st octet first 4bit is 1110)
+Class E --> 240.0.0.0 to 255.255.255.255 (experimatenal ) --> (1st octet first 4bit is 1111)
+
+Subnet Mask --> it is a number to divide the ip address into 2 parts.
+1. Netowrk Part
+2. Host Part
+
+Classless Routing
+-----------------
+VLSM --> Variable length subnet mask ---> currently 
+you can change your subnet mask as per your requirement
+
+Q. Find the ip range for 132.45.91.5/18 --> Home Work
+
