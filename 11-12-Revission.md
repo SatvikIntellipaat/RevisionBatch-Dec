@@ -471,3 +471,6 @@ Transit-gateway --> It helps to connect multiple network (n vpcs) and also helps
 Endpoints --> it helps you to connect aws services privately
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 Q. create 2 networks in us-east-1 and 2 networks in us-east-2. Combine all networks to communicate with each other.
+
+Solution: https://app.eraser.io/workspace/btW8pfkJXIfhRsiTyWIa?origin=share
+
