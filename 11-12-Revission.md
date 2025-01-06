@@ -474,3 +474,52 @@ Q. create 2 networks in us-east-1 and 2 networks in us-east-2. Combine all netwo
 
 Solution: https://app.eraser.io/workspace/btW8pfkJXIfhRsiTyWIa?origin=share
 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+Day-9
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+EFS,Fsx for windows & Fsx Lusture
+
+EFS --> network file system
+All the devices in the smae network can be connect to the system and it support shared system.
+
+--> protocol : nfs
+-> It only supports linux maxhines.
+Ubuntu: nfs-common
+amazon-linux/redhat: nfs-utils
+
+Steps:
+-----
+1. Launch an ec2 machine (amzonlinux or ubuntu ami ) with below security-group-inbouund-rules
+-> ssh(port 22) from anywhere
+-> nfs(port 2049) from anywhere
+2. Connect to ec2 machines and install nfs packages
+	```
+	#For Ubuntu Machine
+	sudo su
+	apt install nfs-common -y
+
+	#For Amazon-linux/redhat Machine
+	sudo su
+	yum install nfs-utils -y
+	```
+3. Create a Directory 
+	mkdir efs
+4. Paste the mounting command from efs
+
+-----------------
+Disadvatanges:
+1. Accidentally deletion by user will affect all
+2. Only can be attached in the same region
+3. Limited to linux machibnes
+4. Data over writting
+5. Versioning is not avilable
+
+------------------------------------------------------------------------------------
+Fsx ---> which supports machines
+1.Fsx with windows(smb protocol)
+2.Fsx-lusture--> Is has high higher performace(lusture protocol)
+-->yum install lustre-client
+-->dnf install -y lustre-client
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
