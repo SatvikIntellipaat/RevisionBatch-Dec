@@ -474,8 +474,7 @@ Q. create 2 networks in us-east-1 and 2 networks in us-east-2. Combine all netwo
 
 Solution: https://app.eraser.io/workspace/btW8pfkJXIfhRsiTyWIa?origin=share
 
-------------------------------------------------------------------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Day-9
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 EFS,Fsx for windows & Fsx Lusture
@@ -523,3 +522,48 @@ Fsx ---> which supports machines
 -->dnf install -y lustre-client
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Day-10
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+File Storage: Life Cycle Policies
+CDN: CloudFront
+Monitoring: CloudWatch, CloudTrail
+
+S3
+-> Object level storage
+-> Global Service
+-> Unlimited Storage
+-> versioning
+-> to store static content (images,files,videos)
+Note:  When you create an s3 bucket in an specific region, it stores all the objects in that region only. Bit they can be accesed from any where.
+
+Note: Bucket-Name should be unique throughout the globle
+Bucket Versioning: This feature enables to store multiple variants of the same file
+
+Object Permission
+-ACLs (Access control lists)(object level)
+-By bucket policy(bucket level)
+
+Note:
+-> If distance between you and server increases, the response & request time will be increases
+-> If you upload any file to s3 when versioning is disabled, you wont get any version id
+
+
+{
+  "Id": "Policy1736264201648",
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Stmt1736264200127",
+      "Action": [
+        "s3:GetObject"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::satvik-070125/*",
+      "Principal": "*"
+    }
+  ]
+}
+
+transfer-accelerator: It creates a private endpoint which uploads your data is faster ways.
