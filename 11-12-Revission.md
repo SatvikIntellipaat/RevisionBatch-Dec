@@ -526,9 +526,6 @@ Fsx ---> which supports machines
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Day-10
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
-File Storage: Life Cycle Policies
-CDN: CloudFront
-Monitoring: CloudWatch, CloudTrail
 
 S3
 -> Object level storage
@@ -567,3 +564,34 @@ Note:
 }
 
 transfer-accelerator: It creates a private endpoint which uploads your data is faster ways.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Day-11
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+File Storage: Life Cycle Policies
+CDN: CloudFront
+Monitoring: CloudWatch, CloudTrail
+
+S3 storage clases:
+1. standard class - default(for website contents)
+2. standard ia class 
+3. s3 intelligent class
+4. one zone-ia(all your infrequent access data stored in a single availability zone)
+5. s3 glacier
+6. s3 glacier deep archie
+
+For more info: https://aws.amazon.com/s3/storage-classes/
+
+S3 Life cycle: what does s3 should do acions on the objects in their lifetime.
+
+-----------------------------------
+Cloud-Trail: Monitoring services, it moinstors the activities done on your aws acount regarding resources
+Cloud-Watch: Monitors the resources
+
+----------------------------------
+CloudFront -  is CDN Service
+CDN - Content delivery network (images,videos,api data)
+CDN caches the data in the nearest local server due to which the load on main services reduces.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Day-12
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+Lambda, Dynamodb,sns (API Gateway optional)

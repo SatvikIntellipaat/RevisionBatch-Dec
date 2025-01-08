@@ -1,0 +1,12 @@
+lambda,dynamodb
+--------------------
+
+beanstalk
+sqs
+ses
+sns
+cloudformation
+rds
+dynamodb
+redshift
+migration
