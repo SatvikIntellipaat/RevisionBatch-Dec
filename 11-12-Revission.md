@@ -612,3 +612,39 @@ The test contains 3 scenario based questions which you need to impliment on AWS 
 Take the screenshots of implimentation of question create an online google word document and upload the link in the google form.
 
 https://forms.gle/DQThZCQy6YqrezzE8
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Day-15
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+Test-Solutions
+
+Q3. Write a Lambda function that gets triggered when an item is added to a DynamoDB table. Log the details of the added item.  
+
+import json
+
+def lambda_handler(event, context):
+    # TODO implement
+
+    eventName = event['Records'][0]['eventName']
+
+    if eventName == 'INSERT':
+        name = event['Records'][0]['dynamodb']['Keys']['name']['S']
+        id = event['Records'][0]['dynamodb']['Keys']['id']['S']
+
+        print(f"Name: {name} and id: {id}")
+    else:
+        print("Data is not added")
+
+    return {
+        'statusCode': 200,
+        'body': json.dumps('Hello from Lambda!')
+    }
+
+-----------------------------------------------------------------------
+Q1
+
+#!/bin/bash
+
+sudo su
+apt install apache2 -y
+echo "Hello World !!!" > /var/www/html/index.html
