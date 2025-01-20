@@ -602,7 +602,13 @@ S3: put,get,delete
 Home Work: Learn boto3 and try to write a code to send message to sns
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Day-13
+Day-14
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+Revision Test
 
-Lambda and beanstalk
+Kindly go through all topic until today, i will be sharing the link by 8:15
+
+The test contains 3 scenario based questions which you need to impliment on AWS Console.
+Take the screenshots of implimentation of question create an online google word document and upload the link in the google form.
+
+https://forms.gle/DQThZCQy6YqrezzE8
