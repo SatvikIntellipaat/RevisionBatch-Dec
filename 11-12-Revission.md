@@ -648,3 +648,145 @@ Q1
 sudo su
 apt install apache2 -y
 echo "Hello World !!!" > /var/www/html/index.html
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Day-16
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+CloudFormation 
+
+A service provided by aws to manage aws resources in terms of code
+Terraform-platform
+
+Advantages:
+-> Creation, Managing resources 
+-> Sharing the infra
+
+Key Concepts:
+1.Stack --> Group of resources managed as a single unit
+2.Template --> Blueprint of the infra in the form of code.
+
+Components:
+1. AWSTemplateFormatVersion: Specifies the template format version
+2. Description: info about template
+3. Metadata: additional info
+4. parameters: User-input, which we take during the execution of the template
+5. Resources: aws resurces
+6. Mappings: A dictonary containing static data.
+7. Conditions: enable conditional resource creation.
+8. outputs:return values like id
+
+Q. Create an ec2 instance.
+->keypair
+->imageid
+->instancetype
+
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  myinstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-04b4f1a9cf54c11d0
+      KeyName: hello
+      InstanceType: t2.micro
+      Tags:
+        - Key: Name
+          Value: my-machine
+
+--> Lets remove the keyname dependency.
+
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  mykeypair:
+    Type: AWS::EC2::KeyPair::KeyName
+Resources:
+  myinstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-04b4f1a9cf54c11d0
+      KeyName: !Ref mykeypair
+      InstanceType: t2.micro
+      Tags:
+        - Key: Name
+          Value: my-machine
+
+--> it is region dependency 
+##Based on the region my ami id should be fetched. -- > Mappings
+
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  mykeypair:
+    Type: AWS::EC2::KeyPair::KeyName
+Mappings:
+    myAMIids:
+        "us-east-1": 
+            AMI: ami-04b4f1a9cf54c11d0
+        "us-east-2":
+            AMI: ami-0cb91c7de36eed2cb
+Resources:
+  myinstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !FindInMap [myAMIids, !Ref "AWS::Region", AMI]
+      KeyName: !Ref mykeypair
+      InstanceType: t2.micro
+      Tags:
+        - Key: Name
+          Value: my-machine
+
+Q. Create an ec2 instance and sg for the machine.Paramter you will take user input as instance type.
+
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  mykeypair:
+    Type: AWS::EC2::KeyPair::KeyName
+  myinstancetype:
+    Type: String
+    Default: t2.micro
+    AllowedValues:
+      - t2.micro
+      - t2.small
+Mappings:
+  myAMIids:
+    us-east-1:
+      AMI: ami-04b4f1a9cf54c11d0
+    us-east-2:
+      AMI: ami-0cb91c7de36eed2cb
+Resources:
+  mysg:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: it for ec2
+      GroupName: mysgfromcf
+      # To specify outbound rules
+      SecurityGroupEgress:
+        - IpProtocol: '-1'
+          CidrIp: 0.0.0.0/0
+      # To specify indound rules
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          ToPort: 22
+          FromPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          ToPort: 80
+          FromPort: 80
+          CidrIp: 0.0.0.0/0
+  myinstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !FindInMap
+        - myAMIids
+        - !Ref AWS::Region
+        - AMI
+      KeyName: !Ref mykeypair
+      SecurityGroupIds:
+        - !Ref mysg
+      InstanceType: !Ref myinstancetype
+      Tags:
+        - Key: Name
+          Value: my-machine
+
+NOTE: FOR CREATING A SECURITY GROUP WITH EGRESS, VPCID IS MANDATORY.
+
+Q. Create an vpc,and 2subnets (one is public, one is private, create one ec2 machine inside in each subnet, and private machine should be only connected from public machine . )
+
+Deadline: Next Tuesday.
