@@ -790,3 +790,39 @@ NOTE: FOR CREATING A SECURITY GROUP WITH EGRESS, VPCID IS MANDATORY.
 Q. Create an vpc,and 2subnets (one is public, one is private, create one ec2 machine inside in each subnet, and private machine should be only connected from public machine . )
 
 Deadline: Next Tuesday.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Day-17
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+SNS,SES,SQS
+
+SNS(Simple Notification Service)
+-Manage notification between services
+-producer
+-Subscriber
+
+--Topic: Stram containing the messages
+
+Subcribers:
+-email
+-SMS
+-Lambda
+-SQS
+-HTTP/HTTPS endpoints
+
+SNS Topic Types:
+- FIFO (First In First Out) only supports for sqs (ordered maintaibed)
+- Standard (try to maintain order) , it supports all Subscribers & it is fastest
+
+---------------------------------
+SES(Simple Email Service)
+-Bulk Message
+
+
+SQS(Simple Queue Service)
+-Decoupling 
+
+-DeadLetterQ
+
+--> FIFO
+--> Standard
