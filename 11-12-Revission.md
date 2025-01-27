@@ -784,7 +784,7 @@ Resources:
       Tags:
         - Key: Name
           Value: my-machine
-
+-------------------------------------------------------------------------------------------------
 NOTE: FOR CREATING A SECURITY GROUP WITH EGRESS, VPCID IS MANDATORY.
 
 Q. Create an vpc,and 2subnets (one is public, one is private, create one ec2 machine inside in each subnet, and private machine should be only connected from public machine . )
@@ -845,10 +845,10 @@ student data (name,id,marks)
 non-relational database:
 -> data is stored in any format(tables,document)
 -> it is a unstructered or semi-structured data
-->nosql - dynamodb,mongodbcassandra
+->nosql - dynamodb,mongodb,cassandra
 
 In-memory database(RAM)
--> redis 
+-> redis (chaching)--> elasticache
 graph databases
 -> neptune
 
@@ -857,3 +857,10 @@ to store large amaount of structured or semi-structured data from multiple sourc
 -> to analysize data.
 
 Note: For rds machines we also provide subnet groups(conatiner min 2 subnets)
+
+Redshits uses redis
+## Redshift serverless (the computation power is decided on the go)
+->Namespace :Namespace is a collection of database objects and users
+->Workgroup: Collectcion of computing resources
+----------
+## Redshit cluster (you provided the computation power)
