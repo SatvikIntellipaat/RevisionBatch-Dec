@@ -826,3 +826,34 @@ SQS(Simple Queue Service)
 
 --> FIFO
 --> Standard
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Day-18
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+RDS, Dynamodb, Redshift
+
+Database vs storage
+------------------------
+Organised collection of data -> database
+
+Databases types:
+Relational database:
+-> data is stored in tables(row,columns)
+-> data is in a structured way.
+Ex: sql-mysql,postgress,orcalsql,microsoftsql
+student data (name,id,marks)
+non-relational database:
+-> data is stored in any format(tables,document)
+-> it is a unstructered or semi-structured data
+->nosql - dynamodb,mongodbcassandra
+
+In-memory database(RAM)
+-> redis 
+graph databases
+-> neptune
+
+Data Warehouse:redshift
+to store large amaount of structured or semi-structured data from multiple sources.
+-> to analysize data.
+
+Note: For rds machines we also provide subnet groups(conatiner min 2 subnets)

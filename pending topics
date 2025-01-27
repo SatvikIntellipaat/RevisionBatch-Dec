@@ -1,7 +1,3 @@
-sqs
-ses
-sns
-cloudformation
 rds
 dynamodb
 redshift
