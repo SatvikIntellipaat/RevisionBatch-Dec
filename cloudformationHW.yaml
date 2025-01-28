@@ -1,0 +1,137 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  MykeyName:
+    Type: AWS::EC2::KeyPair::KeyName
+    Description: Select the keypair name for the ec2 machines.
+Resources:
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 145.10.0.0/16
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      Tags:
+        - Key: Name
+          Value: My-VPC
+  publicSubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref VPC
+      CidrBlock: 145.10.0.0/24
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: Name
+          Value: My-VPC-public-subnet
+  privateSubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref VPC
+      CidrBlock: 145.10.1.0/24
+      Tags:
+        - Key: Name
+          Value: My-VPC-private-subnet
+  igw:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value: My-VPC-igw
+  igwattachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref VPC
+      InternetGatewayId: !Ref igw
+  PublicRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref VPC
+      Tags:
+        - Key: Name
+          Value: My-VPC-public-route-table
+  PublicroutetableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref PublicRouteTable
+      SubnetId: !Ref publicSubnet
+  igwroute:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref PublicRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref igw
+  PrivateRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref VPC
+      Tags:
+        - Key: Name
+          Value: My-VPC-private-route-table
+  PrivateroutetableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref PrivateRouteTable
+      SubnetId: !Ref privateSubnet
+  publicSg:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: this is a sg for public machine
+      GroupName: public-sg
+      VpcId: !Ref VPC
+      #outbound rules
+      SecurityGroupEgress:
+        - IpProtocol: '-1' #all traffic
+          CidrIp: 0.0.0.0/0
+      #inbound rules
+      SecurityGroupIngress:
+        - IpProtocol: '-1' #all traffic
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Name
+          Value: My-VPC-public-sg
+  privateSg:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: this is a sg for private machine
+      GroupName: private-sg
+      VpcId: !Ref VPC
+      #outbound rules
+      SecurityGroupEgress:
+        - IpProtocol: '-1' #all traffic
+          CidrIp: 0.0.0.0/0
+      #inbound rules
+      SecurityGroupIngress:
+        - IpProtocol: '-1' #all traffic with privateip of public machine
+          CidrIp: !Sub ${publicInstance.PrivateIp}/32
+        - IpProtocol: '-1' #all traffic with public subnet cidr
+          CidrIp: 145.10.0.0/24
+      Tags:
+        - Key: Name
+          Value: My-VPC-public-sg
+  publicInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      KeyName: !Ref MykeyName
+      ImageId: ami-0ac4dfaf1c5c0cce9
+      InstanceType: t2.micro
+      NetworkInterfaces:
+        - DeviceIndex: '0'
+          GroupSet:
+            - !Ref publicSg
+          SubnetId: !Ref publicSubnet
+      Tags:
+        - Key: Name
+          Value: myvpc-publicmachine
+  privateInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      KeyName: !Ref MykeyName
+      ImageId: ami-0ac4dfaf1c5c0cce9
+      InstanceType: t2.micro
+      NetworkInterfaces:
+        - DeviceIndex: '0'
+          GroupSet:
+            - !Ref privateSg
+          SubnetId: !Ref privateSubnet
+      Tags:
+        - Key: Name
+          Value: myvpc-privatemachine
